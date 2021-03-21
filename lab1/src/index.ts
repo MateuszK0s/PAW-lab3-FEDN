@@ -32,24 +32,24 @@ class Main{
     }
     computeData(){
         const l1 = +this.l1Input.value;
-        const l2 = +this.l1Input.value;
-        const l3 = +this.l1Input.value;
-        const l4 = +this.l1Input.value;
-        const sum = l1+l2+l3+l4;
+        const l2 = +this.l2Input.value;
+        const l3 = +this.l3Input.value;
+        const l4 = +this.l4Input.value;
+        
+        const sum = l1 + l2 + l3 + l4;
+        
         const avg = sum/4;
-        const min = Math.min(l1,l2,l3,l4);
-        const max = Math.max(l1,l2,l3,l4);
+        const min = Math.min(l1, l2, l3, l4);
+        const max = Math.max(l1, l2, l3, l4);
 
-        this.showStats(sum,avg,min,max);
+        this.showStats(sum, avg, min, max);
     }
 
-    showStats(sum: number,avg: number,min: number,max: number){
+    showStats(sum: number, avg: number, min: number, max: number){
         this.sumInput.value = sum.toString();
         this.avgInput.value = avg.toString();
         this.minInput.value = min.toString();
         this.maxInput.value = max.toString();
     }
-
 }
-
 new Main();

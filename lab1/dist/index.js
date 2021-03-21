@@ -25,9 +25,9 @@ var Main = /** @class */ (function () {
     };
     Main.prototype.computeData = function () {
         var l1 = +this.l1Input.value;
-        var l2 = +this.l1Input.value;
-        var l3 = +this.l1Input.value;
-        var l4 = +this.l1Input.value;
+        var l2 = +this.l2Input.value;
+        var l3 = +this.l3Input.value;
+        var l4 = +this.l4Input.value;
         var sum = l1 + l2 + l3 + l4;
         var avg = sum / 4;
         var min = Math.min(l1, l2, l3, l4);

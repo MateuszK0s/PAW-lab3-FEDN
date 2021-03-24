@@ -10,8 +10,8 @@ var tomSound;
 var channel1 = [];
 appStart();
 function appStart() {
-    document.body.addEventListener('keypress', onKeyDown);
-    var btnChannel1Play = document.querySelector('#btnChannel1');
+    document.addEventListener('keypress', onKeyDown);
+    var btnChannel1Play = document.querySelector('#playChannel1');
     btnChannel1Play === null || btnChannel1Play === void 0 ? void 0 : btnChannel1Play.addEventListener('click', onPlayChannel1);
     getSounds();
 }
@@ -34,7 +34,6 @@ function onPlayChannel1() {
     });
 }
 function onKeyDown(ev) {
-    console.log(ev);
     var key = ev.key;
     var time = ev.timeStamp;
     channel1.push([key, time]);
@@ -43,39 +42,39 @@ function onKeyDown(ev) {
 }
 function playSound(key) {
     switch (key) {
-        case 'w':
+        case '1':
             hihatSound.currentTime = 0;
             hihatSound.play();
             break;
-        case 's':
+        case '2':
             clapSound.currentTime = 0;
             clapSound.play();
             break;
-        case 'a':
+        case '3':
             boomSound.currentTime = 0;
             boomSound.play();
             break;
-        case 'd':
+        case '4':
             kickSound.currentTime = 0;
             kickSound.play();
             break;
-        case 'q':
+        case '5':
             tomSound.currentTime = 0;
             tomSound.play();
             break;
-        case 'e':
+        case '6':
             tinkSound.currentTime = 0;
             tinkSound.play();
             break;
-        case 'r':
+        case '7':
             rideSound.currentTime = 0;
             rideSound.play();
             break;
-        case 'f':
+        case '8':
             openhatSound.currentTime = 0;
             openhatSound.play();
             break;
-        case 'z':
+        case '9':
             snareSound.currentTime = 0;
             snareSound.play();
             break;

@@ -13,14 +13,14 @@ const channel1: any[] = [];
 appStart();
 
 function appStart(): void{
-    document.body.addEventListener('keypress', onKeyDown);     
-    const btnChannel1Play = document.querySelector('#btnChannel1');
+    document.addEventListener('keypress', onKeyDown);     
+    const btnChannel1Play = document.querySelector('#playChannel1');
     btnChannel1Play?.addEventListener('click', onPlayChannel1);   
     getSounds();
 }
 
 function getSounds(): void {
-    hihatSound = document.querySelector('[data-sound="hihat"]');
+    hihatSound = document.querySelector('[data-sound="hihat"]'); 
     clapSound = document.querySelector('[data-sound="clap"]');
     boomSound = document.querySelector('[data-sound="boom"]');
     kickSound = document.querySelector('[data-sound="kick"]');
@@ -40,7 +40,6 @@ function onPlayChannel1(): void{
 }
 
 function onKeyDown(ev: KeyboardEvent): void{
-    console.log(ev)
     const key = ev.key;
     const time = ev.timeStamp;
     channel1.push([key, time]);
@@ -52,47 +51,47 @@ function onKeyDown(ev: KeyboardEvent): void{
 
 function playSound(key: string): void{
     switch(key){
-        case 'w':
+        case '1':
             hihatSound.currentTime = 0;
             hihatSound.play();
             break;
             
-        case 's':
+        case '2':
             clapSound.currentTime = 0;
             clapSound.play();
             break;
 
-        case 'a':
+        case '3':
             boomSound.currentTime = 0;
             boomSound.play();
             break;    
 
-        case 'd':
+        case '4':
             kickSound.currentTime = 0;
             kickSound.play();
             break;  
 
-        case 'q':
+        case '5':
             tomSound.currentTime = 0;
             tomSound.play();
             break;  
 
-        case 'e':
+        case '6':
             tinkSound.currentTime = 0;
             tinkSound.play();
             break;  
 
-        case 'r':
+        case '7':
             rideSound.currentTime = 0;
             rideSound.play();
             break;  
 
-        case 'f':
+        case '8':
             openhatSound.currentTime = 0;
             openhatSound.play();
             break;  
 
-        case 'z':
+        case '9':
             snareSound.currentTime = 0;
             snareSound.play();
             break;  

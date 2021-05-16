@@ -14,7 +14,7 @@ appStart();
 
 function appStart(): void{
     document.addEventListener('keypress', onKeyDown);     
-    const btnChannel1Play = document.querySelector('#playChannel1');
+    const btnChannel1Play = document.querySelector('.playChannel1');
     btnChannel1Play?.addEventListener('click', onPlayChannel1);   
     getSounds();
 }
@@ -43,7 +43,7 @@ function onKeyDown(ev: KeyboardEvent): void{
     const key = ev.key;
     const time = ev.timeStamp;
     channel1.push([key, time]);
-    playSound(key);   
+    playSound(key);
     console.log(
         channel1
     );
@@ -96,6 +96,5 @@ function playSound(key: string): void{
             snareSound.play();
             break;  
     }
-    
 }
 

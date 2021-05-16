@@ -21,7 +21,7 @@ body{
     color: white;
 }
 
-#playButtons{
-    margin-left: auto;
-    margin-right: auto;    
+.playButtons{
+    display: flex;
+    justify-content: center;
 }

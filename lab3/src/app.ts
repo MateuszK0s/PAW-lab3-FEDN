@@ -1,7 +1,7 @@
 export class App {
-    opwApiKey = '50d53005c0fd5f556bb4ef15224c4209';
+    opwApiKey = '7858c2e898030f631401994d66f54c4a'; 
     constructor() {
-        this.getCityInfo('zakopane')
+        this.getCityInfo('zakopane') //na zdarzeniu dodaj
     }
     async getCityInfo(city: string) {
         const weather = await this.getWeather('zakopane');

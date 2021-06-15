@@ -36,8 +36,15 @@ export interface ISys {
     sunset: number;
 }
 
+export interface ICityWeather {
+    [index: number]: ICityWeather;
+    description: string;
+    icon: string;
+    id: number;
+    main: string;
+}
 
-export default interface IWeatherData{
+export default interface ICity{
     coord: ICoord;
     weather: IWeather;
     base: string;

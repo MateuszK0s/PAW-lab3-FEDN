@@ -18,7 +18,7 @@ body {
     margin-right: auto;
 }
 
-.soundBox {
+.keyboardKey {
     width: 150px;
     height: 150px;
     border-radius: 10px;
@@ -32,19 +32,64 @@ body {
     text-align: center;
 }
 
-.soundBox:hover {
+.keyboardKey:hover {
     cursor: pointer;
 }
 
-.soundBox:active {
+.keyboardKey:active {
     background-color: #ffc13b;
 }
 
 #layerContainer{
     margin-left: auto;
-    margin-right: auto;    
+    margin-right: 115px;    
     display: grid;
     flex-direction: row;
     justify-content: center;
-    
+}
+
+.record-btn{
+    background-color: #ff6e40;
+    margin: 5px 15px;
+    padding: 25px;
+    border: 0px;
+    color: white;
+}
+
+.stop-recording-btn{
+    border: 0px;
+    margin: 5px 15px;
+    padding: 25px;
+}
+
+.play-btn{
+    background-color: #ff6e40;
+    border: 0px;
+    margin: 5px 15px;
+    padding: 25px;
+    color: white;
+}
+
+.record-btn:hover {
+    cursor: pointer;
+}
+
+.record-btn:active {
+    background-color: #ffc13b;
+}
+
+.stop-recording-btn:hover {
+    cursor: pointer;
+}
+
+.stop-recording-btn:active {
+    background-color: #c2c2c2;
+}
+
+.play-btn:hover {
+    cursor: pointer;
+}
+
+.play-btn:active {
+    background-color: #ffc13b;
 }

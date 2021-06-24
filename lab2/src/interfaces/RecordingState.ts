@@ -1,6 +1,6 @@
 enum RecordingState {
-    WAITING,
-    RECORDING
+    DISABLED,
+    ENABLED
 }
 
 export default RecordingState;

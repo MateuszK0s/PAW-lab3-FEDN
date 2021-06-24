@@ -11,7 +11,7 @@ var channel1 = [];
 appStart();
 function appStart() {
     document.addEventListener('keypress', onKeyDown);
-    var btnChannel1Play = document.querySelector('#playChannel1');
+    var btnChannel1Play = document.querySelector('.playChannel1');
     btnChannel1Play === null || btnChannel1Play === void 0 ? void 0 : btnChannel1Play.addEventListener('click', onPlayChannel1);
     getSounds();
 }

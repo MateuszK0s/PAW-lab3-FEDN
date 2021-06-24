@@ -1,4 +1,4 @@
-import Keyboard from "./Keybord";
+import Keyboard from "./Keyboard";
 import Recorder from "./Recoder";
 
 export default class AudioPlayer 
@@ -13,7 +13,7 @@ export default class AudioPlayer
 
     play() {
         let channel = this._recorder.getChannel();
-        let beggining = this._recorder.startAt;
+        let beggining = this._recorder.beggining;
 
         let prevTime = beggining;
         channel?.forEach((step: any) => {

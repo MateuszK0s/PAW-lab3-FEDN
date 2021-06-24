@@ -6,7 +6,7 @@ class Recorder {
     private _channel: any = [];
 
     push(key: string, time: number): void {
-        if (this.state == RecordingState.ENABLED) {
+        if (this.recordingState == RecordingState.ENABLED) {
             this._channel.push({ key, time });
         }
     }
@@ -19,19 +19,19 @@ class Recorder {
         this._channel = [];
     }
 
-    public set startAt(startAt: number) {
-        this._beggining = startAt;
+    public set beggining(beggining: number) {
+        this._beggining = beggining;
     }
 
-    public get startAt() {
+    public get beggining() {
         return this._beggining;
     }
 
-    public set state(state: RecordingState) {
-        this._recordingState = state;
+    public set recordingState(recordingState: RecordingState) {
+        this._recordingState = recordingState;
     }
 
-    public get state() {
+    public get recordingState() {
         return this._recordingState;
     }
 }

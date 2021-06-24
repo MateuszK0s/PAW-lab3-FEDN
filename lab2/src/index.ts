@@ -1,100 +1,125 @@
-let hihatSound: HTMLAudioElement;
-let clapSound: HTMLAudioElement;
-let kickSound: HTMLAudioElement;
-let openhatSound: HTMLAudioElement;
-let rideSound: HTMLAudioElement;
-let snareSound: HTMLAudioElement;
-let tinkSound: HTMLAudioElement;
-let boomSound: HTMLAudioElement;
-let tomSound: HTMLAudioElement;
+import AudioPlayer from "./AudioPlayer";
+import RecordingState from "./interfaces/RecordingState";
+import Keyboard from "./Keyboard";
+import KeyboardMapper from "./KeyboardMapper";
+import Recorder from "./Recoder";
+import { VisualElements } from "./VisualElements";
 
-const channel1: any[] = [];
+const numberOfLayers = 4;
+const recorders: Recorder[] = [];
+const players: AudioPlayer[] = [];
+const keyboard = new Keyboard();
+keyboard.load();
+VisualElements(numberOfLayers);
 
-appStart();
-
-function appStart(): void{
-    document.addEventListener('keypress', onKeyDown);     
-    const btnChannel1Play = document.querySelector('.playChannel1');
-    btnChannel1Play?.addEventListener('click', onPlayChannel1);   
-    getSounds();
+for (let index = 0; index < numberOfLayers; index++) {
+    recorders[index] = new Recorder()
+    players[index] = new AudioPlayer(recorders[index], keyboard);
 }
 
-function getSounds(): void {
-    hihatSound = document.querySelector('[data-sound="hihat"]'); 
-    clapSound = document.querySelector('[data-sound="clap"]');
-    boomSound = document.querySelector('[data-sound="boom"]');
-    kickSound = document.querySelector('[data-sound="kick"]');
-    tomSound = document.querySelector('[data-sound="tom"]');
-    tinkSound = document.querySelector('[data-sound="tink"]');
-    rideSound = document.querySelector('[data-sound="ride"]');
-    openhatSound = document.querySelector('[data-sound="openhat"]');
-    snareSound = document.querySelector('[data-sound="snare"]');
-}
+//
 
-function onPlayChannel1(): void{
-    let prevTime = 0;
-    channel1.forEach(sound => {
-        const timeout = sound.time - prevTime;
-        setTimeout(() => playSound(sound.key), timeout);
-    });
-}
+function onKeyPress(event: KeyboardEvent) {
+    let key = String(event.key).toLocaleLowerCase();
+    let time = event.timeStamp;
 
-function onKeyDown(ev: KeyboardEvent): void{
-    const key = ev.key;
-    const time = ev.timeStamp;
-    channel1.push([key, time]);
-    playSound(key);
-    console.log(
-        channel1
-    );
-}
+    let mapper = KeyboardMapper.getMapper();
+    if (key in mapper) {
+        keyboard.setKey(mapper[key]);
+        keyboard.play();
 
-function playSound(key: string): void{
-    switch(key){
-        case '1':
-            hihatSound.currentTime = 0;
-            hihatSound.play();
-            break;
-            
-        case '2':
-            clapSound.currentTime = 0;
-            clapSound.play();
-            break;
-
-        case '3':
-            boomSound.currentTime = 0;
-            boomSound.play();
-            break;    
-
-        case '4':
-            kickSound.currentTime = 0;
-            kickSound.play();
-            break;  
-
-        case '5':
-            tomSound.currentTime = 0;
-            tomSound.play();
-            break;  
-
-        case '6':
-            tinkSound.currentTime = 0;
-            tinkSound.play();
-            break;  
-
-        case '7':
-            rideSound.currentTime = 0;
-            rideSound.play();
-            break;  
-
-        case '8':
-            openhatSound.currentTime = 0;
-            openhatSound.play();
-            break;  
-
-        case '9':
-            snareSound.currentTime = 0;
-            snareSound.play();
-            break;  
+        for (let index = 0; index < numberOfLayers; index++) {
+            recorders[index]?.push(mapper[key], time);
+        }
     }
 }
 
+function onClick(event: Event) {
+    let target = <HTMLElement>event.target;
+    let soundKey: (string | undefined) = target.dataset.sound;
+    let time = event.timeStamp;
+
+    if (soundKey != undefined) {
+        keyboard.setKey(soundKey);
+        keyboard.play();
+
+        for (let index = 0; index < numberOfLayers; index++) {
+            recorders[index]?.push(soundKey, time);
+        }
+    }
+}
+
+//
+
+let recordBtns = document.querySelectorAll(".record-btn");
+let stopRecordingBtns = document.querySelectorAll(".stop-recording-btn");
+let playBtns = document.querySelectorAll(".play-btn");
+
+function getInputIndex(event: Event) {
+    const target = (event.target as HTMLElement);
+    return Number(target.dataset.key);
+}
+
+recordBtns?.forEach(btn => {
+    btn.addEventListener("click", function (event) {
+        const index = getInputIndex(event);
+        const recorder = recorders[index];
+
+        if (recorder.recordingState == RecordingState.DISABLED) {
+            recorder.clearChannel();
+            recorder.recordingState = RecordingState.ENABLED;
+            recorder.beggining = event.timeStamp;
+
+            let recordBtn = document.querySelector(`button.record-btn[data-key="${index}"]`) as HTMLButtonElement;
+            recordBtn.disabled = true;
+
+            let stopRecordingBtn = document.querySelector(`button.stop-recording-btn[data-key="${index}"]`) as HTMLButtonElement;
+            stopRecordingBtn.disabled = false;
+        }
+    });
+});
+
+stopRecordingBtns?.forEach(btn => {
+    btn.addEventListener("click", function (event) {
+        const index = getInputIndex(event);
+        const recorder = recorders[index];
+
+        if (recorder.recordingState == RecordingState.ENABLED) {
+            recorder.recordingState = RecordingState.DISABLED;
+
+            let recordBtn = document.querySelector(`button.record-btn[data-key="${index}"]`) as HTMLButtonElement;
+            recordBtn.disabled = false;
+
+            let stopRecordingBtn = document.querySelector(`button.stop-recording-btn[data-key="${index}"]`) as HTMLButtonElement;
+            stopRecordingBtn.disabled = true;
+        }
+    });
+});
+
+
+playBtns?.forEach(btn => {
+    btn.addEventListener("click", function (event) {
+        const index = getInputIndex(event);
+        const recorder = recorders[index];
+        const player = players[index];
+
+        if (recorder.recordingState == RecordingState.DISABLED) {
+            player.play();
+        }
+    });
+});
+
+//
+
+document.addEventListener("keypress", onKeyPress);
+
+//
+
+const keyboardPanel = document.getElementById("keyboardPanel");
+if (keyboardPanel != null) {
+    let keys = keyboardPanel.querySelectorAll(".keyboardKey");
+
+    keys?.forEach(key => {
+        key.addEventListener("click", onClick);
+    });
+}

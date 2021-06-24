@@ -1,6 +1,6 @@
 import { IMapper } from "./interfaces/IKeybord";
 
-export default class KeybordMapper {
+export default class KeyboardMapper {
     static getMapper(): IMapper {
         return {
             '1': "tink",

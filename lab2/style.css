@@ -1,27 +1,50 @@
-body{
-    background-color: seashell;
+body {
+    background-color: rgb(255, 241, 220);
 }
 
-#soundButtons{
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 600px; 
-    height: 100px;
-}
-
-.soundButton{
-    background-color: royalblue;
-    width: 160px;
-    height: 100px;
-    margin: 5px;
-    float: left;
-    text-align: center;
-    font-size: 30px;
-    color: white;
-}
-
-.playButtons{
+.keyboardContainer,
+.keyboardPanel {
     display: flex;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#keyboardPanel {
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.soundBox {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff6e40;
+    font-size: 1.2em;
+    color: #f5f0e1;
+    text-align: center;
+}
+
+.soundBox:hover {
+    cursor: pointer;
+}
+
+.soundBox:active {
+    background-color: #ffc13b;
+}
+
+#layerContainer{
+    margin-left: auto;
+    margin-right: auto;    
+    display: grid;
+    flex-direction: row;
+    justify-content: center;
+    
 }

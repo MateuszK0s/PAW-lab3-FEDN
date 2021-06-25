@@ -1,0 +1,18 @@
+body {
+  background: rgb(255, 170, 91);
+}
+
+.weatherCard {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 150px;
+}
+
+.weatherCard .title {
+  text-align: center;
+}
+
+.weatherCard .weatherInfo {
+  text-align: center;
+}

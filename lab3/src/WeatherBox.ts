@@ -2,7 +2,11 @@ import ICity from "./interfaces/IWeatherData";
 
 export class WeatherBox{
     city: ICity;
-
+    
+    constructor(city: ICity) {
+        this.city = city;
+    }
+    
     get title() {
         const title = document.createElement("span");
         title.classList.add("title");
@@ -13,12 +17,8 @@ export class WeatherBox{
     get weatherInfo() {
         const info = document.createElement("span");
         info.classList.add("weatherInfo");
-        info.textContent = this.city.weather.main;
+        info.textContent = this.city.weather[0].main;
         return info;
-    }
-
-    constructor(city: ICity) {
-        this.city = city;
     }
 
     build(): HTMLElement
@@ -32,4 +32,5 @@ export class WeatherBox{
 
         return card;
     }
+
 }

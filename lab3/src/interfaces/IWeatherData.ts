@@ -3,13 +3,6 @@ export interface ICoord {
     lat: string;
 }
 
-export interface IWeather{
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
-}
-
 export interface IMain{
     temp: number;
     feels_like: string;
@@ -36,8 +29,8 @@ export interface ISys {
     sunset: number;
 }
 
-export interface ICityWeather {
-    [index: number]: ICityWeather;
+export interface IWeather {
+    [index: number]: IWeather;
     description: string;
     icon: string;
     id: number;

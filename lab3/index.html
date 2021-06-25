@@ -4,19 +4,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="src/style.css">
 
-  <title>Weatherynka</title>
+  <title>lab3</title>
 </head>
 
 <body>
   <main>
 
-    <div class="inputDiv">
-      City: <input type="text" id="inputCity">
-      <button id='addCityButton'> Add </button>
-    </div>
+    <div class="container">
 
+      <div class="searchBox">
+          <input id="cityInput" type="text" class="cityInput">
+          <button id="search" class="searchButton">Search</button>
+      </div>
+
+      <div class="WeatherContainer">
+          <div id="result"></div>
+      </div>
+
+  </div>
   </main>
   <script src="dist/index.js" type="module"></script>
 </body>

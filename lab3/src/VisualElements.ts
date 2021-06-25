@@ -1,11 +1,14 @@
 import ICity from "./interfaces/IWeatherData";
 
-export class VisualElements 
-{
+export class VisualElements {
     city: ICity;
 
     getIcon(code: string) {
         return `http://openweathermap.org/img/wn/${code}@2x.png`;
+    }
+    
+    constructor(city: ICity) {
+        this.city = city;
     }
 
     get CityName() {
@@ -18,16 +21,15 @@ export class VisualElements
     get WeatherMain() {
         const info = document.createElement("div");
         info.classList.add("weatherMain");
-        
+
         const weather = document.createElement("span");
         weather.textContent = this.city.weather[0].main;
-        
+
         const img = document.createElement("img");
         img.src = this.getIcon(this.city.weather[0].icon);
 
         info.append(weather);
         info.append(img);
-        
         return info;
     }
 
@@ -38,35 +40,30 @@ export class VisualElements
         const temp = document.createElement("span");
         temp.textContent = `Temp: ${this.city.main.temp}`;
 
-        const humidity = document.createElement("span");
-        humidity.textContent = `Humidity: ${this.city.main.humidity}`;
-
         const pressure = document.createElement("span");
         pressure.textContent = `Pressure: ${this.city.main.pressure}`;
 
+        const humidity = document.createElement("span");
+        humidity.textContent = `Humidity: ${this.city.main.humidity}`;
+
         content.append(temp);
-        content.append(humidity);
         content.append(pressure);
+        content.append(humidity);
 
         return content;
     }
 
-    constructor(city: ICity) {
-        this.city = city;
-    }
+    
 
-    //
+    build(): HTMLElement {
+        const box = document.createElement("div");
+        box.classList.add("weatherBox");
+        box.id = String(this.city.id);
 
-    build(): HTMLElement
-    {
-        const card = document.createElement("div");
-        card.classList.add("weatherCard");
-        card.id = String(this.city.id);
-        
-        card.append(this.Title);
-        card.append(this.WeatherData);
-        card.append(this.CardContent);
+        box.append(this.CityName);
+        box.append(this.WeatherMain);
+        box.append(this.WeatherInfo);
 
-        return card;
+        return box;
     }
 }

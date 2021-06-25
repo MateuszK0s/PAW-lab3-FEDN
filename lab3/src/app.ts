@@ -1,43 +1,38 @@
-import { WeatherBox } from "./WeatherBox";
+export default class App 
+{
+    private apiKey = "7858c2e898030f631401994d66f54c4a";
+    public storageKey = "weatherItems";
 
-export default class App {
-    private opwApiKey = '7858c2e898030f631401994d66f54c4a';
-
-    constructor() {
-        this.addCityButtonEvent();
+    public getItems() {
+        const items = this._getItemsAsString();
+        return items ? JSON.parse(items) : [];
     }
 
-    async addCityButtonEvent() {
-        document.getElementById('addCityButton').addEventListener('click', () => {
-            const input = document.getElementById('inputCity') as HTMLInputElement;
-            const cityInfoData = this.getCityInfo(input.value);
-        })
+    private _getItemsAsString(): string | null {
+        return localStorage.getItem(this.storageKey);
     }
 
-    async getCityInfo(city: string) {
-        const weather = await this.getWeather(city);
-        this.saveData(weather);
-    }
+    public setOrSkip(cityCheck: string) {
+        let items = this._getItemsAsString();
+        let itemAsArray = items ? JSON.parse(items) : [];
 
-    async getWeather(city: string): Promise<any> {
-        const openWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${this.opwApiKey}`;
-        const weatherResponse = await fetch(openWeatherUrl);
-        const weatherData = await weatherResponse.json();
-        console.log(weatherData);
-        return weatherData;
-    }
-
-    saveData(data: any) {
-        localStorage.setItem('weatherData', JSON.stringify(data));
-    }
-
-    getData() {
-        const data = localStorage.getItem('weatherData');
-        if (data) {
-            return JSON.parse(data);
-        } else {
-            return {};
+        if(!itemAsArray.includes(cityCheck)) {
+            itemAsArray.push(cityCheck);
+            localStorage.setItem(this.storageKey, JSON.stringify(itemAsArray));
         }
     }
-}
 
+    public async getCityInfo(cityName: string = "", cityId: null|number = null) {
+        return await this._getWeather(cityName, cityId);
+    }
+
+    private async _getWeather(cityName: string = "", cityId: null|number = null): Promise<any> {
+        const url = cityId != null
+            ? `http://api.openweathermap.org/data/2.5/weather?id=${cityId}&APPID=${this.apiKey}&units=metric`
+            : `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=${this.apiKey}&units=metric`;
+
+
+        const response = await fetch(url);
+        return await response.json();
+    }
+}

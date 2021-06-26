@@ -2,14 +2,8 @@
 @import "./notes-container.scss";
 @import "./buttons.scss";
 
-* {
-    box-sizing: border-box;
-}
-
 body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
+    background-color: rgb(252, 251, 247);
 }
 
 input, button, select, textarea, optgroup, option {
@@ -24,11 +18,6 @@ input, button, select, textarea, optgroup, option {
     flex-direction: row;
     width: 100vw;
 }
-
-// .sidebar {
-//     // min-width: 300px;
-//     // width: 300px;
-// }
 
 .container {
     display: flex;
@@ -45,5 +34,5 @@ input, button, select, textarea, optgroup, option {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 150px;
+    min-height: 170px;
 }

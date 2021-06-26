@@ -1,6 +1,5 @@
 .notes-container {
     display: flex;
-    justify-content: row;
     flex-wrap: wrap;
 
     .note-container {
@@ -12,7 +11,6 @@
         padding: 12px 12px 6px 12px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
 
         .header {
             padding: 4px 0;

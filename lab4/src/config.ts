@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-    storage: "local",
+    storage: "firebase",
     firebase: {
         apiKey: "AIzaSyD_cEYETYW5w_n4dY6yrCPl1M2TSx9u9wk",
         authDomain: "notekeeper-2f83d.firebaseapp.com",

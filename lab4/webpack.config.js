@@ -7,6 +7,7 @@ const MODE_DEVELOPMENT = "development";
 
 //
 
+
 const appConfig = (env, args) => {
 
     const production = args && args.mode && args.mode == MODE_PRODUCTION;
@@ -33,9 +34,21 @@ const appConfig = (env, args) => {
                     test: /\.ts?$/, 
                     loader: 'ts-loader'
                 },
+                {
+                    test: /\.s[ac]ss$/i,
+                    use: [{
+                      loader: "style-loader"
+                    }, {
+                      loader: "css-loader"
+                    }, {
+                      loader: "sass-loader"
+                    }]
+                  }
             ]
         }
     };
 };
+
+module.exports = [appConfig];
 
 module.exports = [appConfig];

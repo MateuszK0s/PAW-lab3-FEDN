@@ -57,14 +57,14 @@ export default class NoteBuilder {
         footer.classList.add("footer");
 
         const deleteButton = document.createElement("button");
-        deleteButton.textContent = "delete";
+        deleteButton.textContent = "Delete";
         deleteButton.classList.add("btn")
         deleteButton.addEventListener("click", () => {
             this._noteController.deleteNote(this._note.Id);
         });
 
         const pinnedButton = document.createElement("button");
-        pinnedButton.textContent = this._note.Pinned ? "unpin" : "pin";
+        pinnedButton.textContent = this._note.Pinned ? "Unpin" : "Pin";
         pinnedButton.classList.add("btn")
         pinnedButton.addEventListener("click", () => {
             let note = this._note;

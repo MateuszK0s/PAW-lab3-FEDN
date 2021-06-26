@@ -4,15 +4,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="src/scss/index.scss">
   <title>Notekeeper</title>
 </head>
 
 <body>
-  <main>
-
-  </main>
-  <script src="dist/index.js" type="module"></script>
+  <div class="root">
+    <div class="sidebar">
+      <!-- Sidebar content -->
+    </div>
+    <div class="container">
+      <div class="container-notes-header">
+        <div id="create-note-container">
+          <div class="not-visible note-title">
+            <input id="create-note-title-input" class="create-note" type="text" placeholder="Tytuł" />
+          </div>
+          <div class="visible">
+            <input id="create-note-content-input" class="create-note" type="text" placeholder="Utwórz notatkę..." />
+          </div>
+          <div class="not-visible footer">
+            <div class="options">
+              <div class="color">
+                <div class="color-circle">
+                  <button id="color-picker-button" class="color-picker-button">C</button>
+                </div>
+                <div id="color-palette-container" class="color-palette-container">
+                  <div style="background-color: #ffffff;" attr-hex-color="#ffffff" class="color-picker"></div>
+                  <div style="background-color: #a7ffeb;" attr-hex-color="#a7ffeb" class="color-picker"></div>
+                  <div style="background-color: #fbbc04;" attr-hex-color="#fbbc04" class="color-picker"></div>
+                  <div style="background-color: #f28b82;" attr-hex-color="#f28b82" class="color-picker"></div>
+                  <div style="background-color: #aecbfa;" attr-hex-color="#aecbfa" class="color-picker"></div>
+                  <div style="background-color: #e6c9a8;" attr-hex-color="#e6c9a8" class="color-picker"></div>
+                  <div style="background-color: #d7aefb;" attr-hex-color="#d7aefb" class="color-picker"></div>
+                  <div style="background-color: #fff475;" attr-hex-color="#fff475" class="color-picker"></div>
+                </div>
+              </div>
+            </div>
+            <div class="buttons">
+              <button id="footer-close-btn" class="footer-close-btn">Zamknij</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content" class="content">
+        <div id="pinned-notes-container" class="notes-container"></div>
+        <div id="not-pinned-notes-container" class="notes-container"></div>
+      </div>
+    </div>
+  </div>
 </body>
+
+<script src="dist/index.js" type="module"></script>
 
 </html>

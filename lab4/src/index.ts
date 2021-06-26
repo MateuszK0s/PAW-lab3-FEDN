@@ -1,20 +1,5 @@
-import firebase from "firebase";
-import { firebaseConfig } from "./config";
+import App from "./App"
+import "./scss/index.scss"
 
-console.log("test");
-const hello = "FireBase example";
-document.body.innerHTML = hello;
-
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebaseApp.firestore();
-
-const note = {
-    title: "prahhh",
-    content: "skrrrrrrrrrrrrrrra"
-};
-
-async function addNote(note: any){
-    const res = await db.collection('Notes').add(note);
-}
-
-addNote(note);
+const app = new App();
+app.renderNotes();
